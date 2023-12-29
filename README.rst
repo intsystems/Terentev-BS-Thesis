@@ -15,26 +15,12 @@
 
 .. class:: center
 
-    :Название исследуемой задачи: Мое название работы
-    :Тип научной работы: M1P/НИР/CoIS
-    :Автор: Имя Отчество Фамилия
-    :Научный руководитель: степень, Фамилия Имя Отчество
-    :Научный консультант(при наличии): степень, Фамилия Имя Отчество
+    :Название исследуемой задачи: Классификация траекторий динамических систем с помощью физически-информированных нейросетей
+    :Тип научной работы: НИР
+    :Автор: Терентьев Александр Андреевич
+    :Научный руководитель: Стрижов Вадим Викторович
 
 Abstract
 ========
 
-Purus sit amet luctus venenatis lectus magna fringilla. Condimentum id venenatis a condimentum vitae sapien. Auctor neque vitae tempus quam pellentesque nec nam aliquam. Eget egestas purus viverra accumsan in. Nam aliquam sem et tortor. Donec et odio pellentesque diam volutpat commodo. Odio pellentesque diam volutpat commodo sed egestas. Sit amet dictum sit amet justo. Pellentesque sit amet porttitor eget. Imperdiet sed euismod nisi porta lorem mollis aliquam ut. Quis varius quam quisque id diam vel quam elementum. Ornare lectus sit amet est placerat in. Vulputate dignissim suspendisse in est ante. Elit sed vulputate mi sit amet mauris. Egestas sed tempus urna et pharetra pharetra. Viverra tellus in hac habitasse platea dictumst vestibulum rhoncus.
-
-Research publications
-===============================
-1. 
-
-Presentations at conferences on the topic of research
-================================================
-1. 
-
-Software modules developed as part of the study
-======================================================
-1. A python package *mylib* with all implementation `here <https://github.com/intsystems/ProjectTemplate/tree/master/src>`_.
-2. A code with all experiment visualisation `here <https://github.comintsystems/ProjectTemplate/blob/master/code/main.ipynb>`_. Can use `colab <http://colab.research.google.com/github/intsystems/ProjectTemplate/blob/master/code/main.ipynb>`_.
+Целью работы является проверка гипотезы о возможности классификации тракеторий физических систем по лагранжианам, а также задачей сатвить предложить метод для данной классификации. Идея состоит в том, чтобы сначала восстановить лагранжиан системы, которая могла бы породить данную траеторию. Лагранжиан восстанавливается с помощью физически-информированных Лагражевых нейронных сетей. Предложена норма, которая вводится на пространстве лагранжианов. Она используется как метрика для метрических методов классификации. В основном для многомерных классификаций используется светрочные нейронные сети, в предположении, что существуют статистические свзяи, между ближайшими точками временного ряда. Данные методы хорошо себя показывают во многих задачах, где эти связи являются прелбладающими. Но для физических систем такие методы не подходят, и предлагается использовать знания о физических связах систем, для выбранных Ларанжевых нейронных сетей этим знанием является закон сохранения энергии.
