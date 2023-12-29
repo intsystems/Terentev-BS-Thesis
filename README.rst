@@ -29,7 +29,8 @@ Code link
 ========
 1) https://github.com/intsystems/Terentev-BS-Thesis/tree/master/code/main.ipynb
 
-# Installation
+Installation
+========
 
 1. `git clone` this repository.
 2. Create new `conda` environment and activate it
