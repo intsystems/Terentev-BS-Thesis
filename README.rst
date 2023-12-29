@@ -28,3 +28,15 @@ Abstract
 Code link
 ========
 1) https://github.com/intsystems/Terentev-BS-Thesis/tree/master/code/main.ipynb
+
+# Installation
+
+1. `git clone` this repository.
+2. Create new `conda` environment and activate it
+3. Run 
+
+```bash
+pip install -r requirements.txt
+pip install ipykernel
+python -m ipykernel install --user --name <env_name> --display-name <env_name>
+```
