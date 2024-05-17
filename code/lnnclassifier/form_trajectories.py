@@ -115,7 +115,7 @@ def vel_cut(vel_components):
 def form_trajectory(vel_components, name):
     X_train = np.hstack((vel2coord(vel_components), vel_cut(vel_components)))
     y_train = vel2acc(vel_components)
-    with open(Path("trajectories", name), 'wb') as handle:
+    with open(Path("lnnclassifier/trajectories", name), 'wb') as handle:
         pickle.dump([X_train, y_train], handle, protocol=pickle.HIGHEST_PROTOCOL)
     
 def form_all_trajectories(multiple_vel_arrs, experiment_name):
