@@ -178,16 +178,16 @@ p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot
 %---------------------------------------------------------
 \begin{frame}
 \frametitle{Модификация функции потерь с регуляризацией}
-В исходной архитектуре сети в каждой точки траектории решается СЛАУ. Проблема в том, что у матрицы $H_L(\mathbf{q}, \dot{\mathbf{q}}) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L$ собственные значения могут быть сколь угодно маленькими. 
+В исходной архитектуре сети в каждой точки траектории решается СЛАУ. Проблема в том, что у матрицы $\mathbf{H}_L(\mathbf{q}, \dot{\mathbf{q}}) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L$ собственные значения могут быть сколь угодно маленькими. 
 
- \[H\hat{\ddot{\mathbf{q}}} = \hat{b} = \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)^{-1}\left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right], \]
-
-$$
-\hat{\ddot{\mathbf{q}}} = H^{-1}\left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right), \dot{\mathbf{q}}\right].
-$$
+ \[\mathbf{H}\hat{\ddot{\mathbf{q}}} = \hat{\mathbf{b}} \equiv \nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, \]
 
 $$
-H\ddot{\mathbf{q}} = b.
+\hat{\ddot{\mathbf{q}}} = \mathbf{H}^{-1}\left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right],
+$$
+
+$$
+\mathbf{H}\ddot{\mathbf{q}} \equiv \mathbf{b}.
 $$
 Тогда изменим функцию потерь так, чтобы штрафовать за собственные значения матрицы $H$  меньше 1, а вместо разности ускорений возьмем невязку для полученной СЛАУ
 
@@ -221,7 +221,7 @@ $$\|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2 \approx \text{const}$$
 
 \begin{frame}
 \frametitle{Эквивалентность приближенной задачи исходной}
-
+Было показано, что приближение исходных лагранжианов систем через их оценки не портит отделимость классов систем.
 \begin{block} {Теорема (Терентьев, 2024)}
 Пусть есть конечное семейство непересекающихся замкнутых выпуклых множеств $\mathcal{A}$ в нормированном пространстве $\mathbb{L}$, тогда существует $\epsilon > 0$, что для любого преобразования пространства $\phi$ такое, что $\|\phi(\mathcal{A}_{i}) - \mathcal{A}_{i}\| < \epsilon$ множества из семейства $\phi{\mathcal{A}}$ попарно сильно отделимы.
 \end{block} 
@@ -229,7 +229,7 @@ $$\|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2 \approx \text{const}$$
 
 \begin{frame}
 \frametitle{Эквивалентность нахождения минимума невязки и отклонения ускорений}
-\begin{block} {Норма}
+\begin{block} {Норма в пространстве лагранжианов}
 \[
 p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot{\mathbf{q}} = \left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right].
 \]
@@ -282,21 +282,6 @@ A(L)(\mathbf{q}, \dot{\mathbf{q}}) = H(L)(\mathbf{q}, \dot{\mathbf{q}})\ddot{\ma
 \end{block} 
 \end{frame}
 
-
-
-\begin{frame}
-\frametitle{Вычислительный эксперимент}
-Исследования проводились на наборе данных Physical Activity Monitoring(PAMAP2)
-\begin{enumerate}
-    \item Записи с трех наборов гироскопов и акселерометров: закрепленных на запястье преобладающей руки, закрепленных на груди, закрепленных на локте преобладающей руки
-    \item Число испытуемых: $M = 9$
-    \item Число видов активностей(классов): $K = 24$
-    \item Каждая активность длилась 2-4 минуты
-    \item Частота сэмплирования 100 Гц
-\end{enumerate}
-
-\end{frame}
-
 \begin{frame}
 \frametitle{Остатки траектории в зависимоти от регуляризации}
 
@@ -309,6 +294,19 @@ A(L)(\mathbf{q}, \dot{\mathbf{q}}) = H(L)(\mathbf{q}, \dot{\mathbf{q}})\ddot{\ma
  \caption{График остатков для траектории двойного маятника, слева с регуляризацией, справа без}
  \label{fig: trajectory3}
 \end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Вычислительный эксперимент}
+Исследования проводились на наборе данных Physical Activity Monitoring(PAMAP2)
+\begin{enumerate}
+    \item Записи с трех наборов гироскопов и акселерометров: закрепленных на запястье преобладающей руки, закрепленных на груди, закрепленных на локте преобладающей руки
+    \item Число испытуемых: $M = 9$
+    \item Число видов активностей(классов): $K = 24$
+    \item Каждая активность длилась 2-4 минуты
+    \item Частота сэмплирования 100 Гц
+\end{enumerate}
 
 \end{frame}
 
