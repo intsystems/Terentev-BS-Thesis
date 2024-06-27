@@ -160,14 +160,14 @@ $\mathcal{L}(\hat{\mathbf{y}}, \mathbf{y})  = \frac{1}{T}\sum_{i=1}^{T} \| \math
 \begin{block}{Параметризация}
 \begin{enumerate}
 \item$p(L|D),\ L \in Q = \{\hat{L} \colon (\mathbf{x} | \mathbf{w}) \to L_{\mathbf{x}, \mathbf{w}}\}$
-$\hat{L}$ - полносвязная нейронная сеть с функцией активации SoftPlus, $w$ - параметры нейронной сети.
-\item $p(L|D) = [L = \hat{L}]$, где $\hat{L}$ ~-- ОМП лагранжиана системы, полученная из $\mathcal{L}(\hat{\mathbf{y}}, \mathbf{y}) \to min$
+$\hat{L}$~-- полносвязная нейронная сеть с функцией активации SoftPlus, $w$~-- параметры нейронной сети.
+\item $p(L|D) = [L = \hat{L}]$, где $\hat{L}$~-- ОМП лагранжиана системы, полученная из $\mathcal{L}(\hat{\mathbf{y}}, \mathbf{y}) \to min$
 \end{enumerate}
 \end{block}
 
 \begin{block}{Система для нахождения ускорений}
 \[
-p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot{\mathbf{q}} = \left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right].
+p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot{\mathbf{q}} = \left[\nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right].
 \]
 \end{block}
 
@@ -180,10 +180,10 @@ p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot
 \frametitle{Модификация функции потерь с регуляризацией}
 В исходной архитектуре сети в каждой точки траектории решается СЛАУ. Проблема в том, что у матрицы $\mathbf{H}_L(\mathbf{q}, \dot{\mathbf{q}}) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L$ собственные значения могут быть сколь угодно маленькими. 
 
- \[\mathbf{H}\hat{\ddot{\mathbf{q}}} = \hat{\mathbf{b}} \equiv \nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, \]
+ \[\mathbf{H}\hat{\ddot{\mathbf{q}}} = \hat{\mathbf{b}} \equiv \nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, \]
 
 $$
-\hat{\ddot{\mathbf{q}}} = \mathbf{H}^{-1}\left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right],
+\hat{\ddot{\mathbf{q}}} = \mathbf{H}^{-1}\left[\nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right],
 $$
 
 $$
@@ -198,7 +198,7 @@ $$
 
 \begin{frame}
 \frametitle{Идея классификатора}
-$$A(L) = \nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, H(L) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L$$
+$$A(L) = \nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}},\ \mathbf{H}(L) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L$$
 
 \begin{figure}
 \centering
@@ -211,8 +211,8 @@ X  \ar@{->}[r]^-{\text{LNN}}  & \hat{L}=g(x|w) \ar@{->}[rr]^{{L_N^{i} = A(L)\lef
 \end{figure}
 \begin{block}{Аппроксимация нормы}
 
-$$\overline{|A(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)|^2 + \|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2}$$
-$$\|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2 \approx \text{const}$$
+$$\overline{|A(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)|^2 + \|\mathbf{H(}L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2}$$
+$$\|\mathbf{H}(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2 \approx \text{const}$$
 \end{block}
 
 \end{frame}
@@ -231,12 +231,12 @@ $$\|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2 \approx \text{const}$$
 \frametitle{Эквивалентность нахождения минимума невязки и отклонения ускорений}
 \begin{block} {Норма в пространстве лагранжианов}
 \[
-p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot{\mathbf{q}} = \left[\nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right].
+p(\hat{y}| X, L): \left(\nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L\right)\ddot{\mathbf{q}} = \left[\nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}\right].
 \]
-$$A(L) = \nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, \mathbf{H}(L) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L,$$
+$$A(L) = \nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, \mathbf{H}(L) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L,$$
 $$\|L\|_L = \|(A(L), \mathbf{H}(L))\|_2,$$
 \begin{equation}\label{eq:linear_equation_acc}
-A(L)(\mathbf{q}, \dot{\mathbf{q}}) = H(L)(\mathbf{q}, \dot{\mathbf{q}})\ddot{\mathbf{q}}.
+A(L)(\mathbf{q}, \dot{\mathbf{q}}) = \mathbf{H}(L)(\mathbf{q}, \dot{\mathbf{q}})\ddot{\mathbf{q}}.
 \end{equation}
 \end{block}
 
@@ -264,19 +264,19 @@ $$
 \begin{frame}
 \frametitle{Аппроксимация нормы}
 Исходное пространство бесконечномерное. Для задачи классификации требуется спроецировать его на евклидово пространство. Рассмотрим норму
-$$A(L) = \nabla_{q} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}}, H(L) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L,$$
-$$\|L\|_L = \|(A(L), H(L))\|_2,$$
+$$A(L) = \nabla_{\mathbf{q}} L-\left(\nabla_{\dot{\mathbf{q}}\mathbf{q}} L\right) \dot{\mathbf{q}},\ \mathbf{H}(L) = \nabla_{\dot{\mathbf{q}} \dot{\mathbf{q}}} L,$$
+$$\|L\|_L = \|(A(L), \mathbf{H}(L))\|_2,$$
 \begin{equation*}
-A(L)(\mathbf{q}, \dot{\mathbf{q}}) = H(L)(\mathbf{q}, \dot{\mathbf{q}})\ddot{\mathbf{q}}.
+A(L)(\mathbf{q}, \dot{\mathbf{q}}) = \mathbf{H}(L)(\mathbf{q}, \dot{\mathbf{q}})\ddot{\mathbf{q}}.
 \end{equation*}
 
 \begin{block} {Теорема (Терентьев, 2024)}
 Исходная норма $\|\cdot\|_L$ с любой наперед заданной точностью $\epsilon$ приближается $l_2$-нормой, при стремлении числа сэмплов $N$ и меры пространства из которого берут сэмплы $\Omega$ к бесконечности
 \[
 \begin{split}
-    \|(A(L),  H(L))\|_2 = \sqrt{\int |A(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)|^2 + \|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2  d\Omega} \approx
+    \|(A(L),  \mathbf{H}(L))\|_2 = \sqrt{\int |A(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)|^2 + \|\mathbf{H}(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2  d\Omega} \approx
 \\
-\mu(\Omega) \cdot \overline{|A(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)|^2 + \|H(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2}
+\mu(\Omega) \cdot \overline{|A(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)|^2 + \|\mathbf{H}(L)\left(\mathbf{q}, \dot{\mathbf{q}}\right)\|_2^2}
 \end{split}
 \]
 \end{block} 
